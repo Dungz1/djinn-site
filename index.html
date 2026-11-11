@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DJINN — The First Agent-Verified Champion Token</title>
+<meta name="description" content="DJINN is a champion token launched on Pons (Robinhood Chain) by a verified Agent Cards ladder champion. The record is on-chain.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #12100c;
+    --ink-2: #1c1913;
+    --paper: #f3ecdd;
+    --paper-dim: #cfc6b2;
+    --smoke: #8f8674;
+    --gold: #c9992e;
+    --gold-bright: #e8c25c;
+    --line: rgba(201, 153, 46, 0.25);
+    --line-soft: rgba(243, 236, 221, 0.12);
+    --display: "Marcellus", Georgia, serif;
+    --body: "Space Grotesk", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--gold); color: var(--ink); }
+  a { color: inherit; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(18, 16, 12, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-in {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 62px;
+  }
+  .wordmark {
+    font-family: var(--display);
+    font-size: 21px; letter-spacing: 0.32em; text-decoration: none;
+    color: var(--paper);
+  }
+  .wordmark .dot { color: var(--gold); }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a {
+    text-decoration: none; font-size: 13.5px; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--paper-dim);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-bright); }
+  .nav-x {
+    border: 1px solid var(--line); padding: 8px 18px; border-radius: 999px;
+    color: var(--gold-bright) !important;
+  }
+  .nav-x:hover { background: var(--gold); color: var(--ink) !important; }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; padding: 110px 0 96px; }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 62% 48% at 76% 28%, rgba(201, 153, 46, 0.13), transparent 65%),
+      radial-gradient(ellipse 40% 30% at 18% 85%, rgba(201, 153, 46, 0.05), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: relative;
+    display: grid; grid-template-columns: 1.35fr 1fr;
+    gap: 56px; align-items: end;
+  }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 26px;
+  }
+  .eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--gold); }
+  h1 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(58px, 9.5vw, 118px);
+    line-height: 0.98; letter-spacing: 0.04em;
+  }
+  h1 .smoke {
+    display: block; font-size: 0.31em; letter-spacing: 0.14em;
+    color: var(--paper-dim); margin-top: 22px; line-height: 1.5;
+  }
+  .hero-sub {
+    max-width: 46ch; color: var(--paper-dim); margin: 30px 0 38px;
+    font-size: 18px;
+  }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--body); font-size: 15px; font-weight: 600;
+    letter-spacing: 0.05em; text-decoration: none; cursor: pointer;
+    padding: 15px 30px; border-radius: 999px; border: 1px solid var(--gold);
+    transition: transform 0.18s, background 0.2s, color 0.2s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-solid { background: var(--gold); color: var(--ink); }
+  .btn-solid:hover { background: var(--gold-bright); }
+  .btn-ghost { color: var(--gold-bright); background: transparent; }
+  .btn-ghost:hover { background: rgba(201, 153, 46, 0.12); }
+
+  .hero-aside {
+    border-left: 1px solid var(--line);
+    padding: 6px 0 6px 34px;
+  }
+  .hero-aside .caption {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--smoke); margin-bottom: 18px;
+  }
+  .aside-num {
+    font-family: var(--display); font-size: 56px; line-height: 1.05;
+    color: var(--gold-bright);
+  }
+  .aside-num small {
+    display: block; font-family: var(--mono); font-size: 12px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--smoke);
+    margin-top: 6px;
+  }
+  .aside-row { padding: 16px 0; border-bottom: 1px solid var(--line-soft); }
+  .aside-row:last-child { border-bottom: 0; }
+  .aside-row .v { font-family: var(--mono); font-size: 19px; color: var(--paper); }
+  .aside-row .k {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--smoke); margin-top: 2px;
+  }
+
+  /* ---------- section frame ---------- */
+  section { position: relative; }
+  .band { padding: 96px 0; border-top: 1px solid var(--line-soft); }
+  .band-paper { background: var(--paper); color: var(--ink); }
+  .band-paper .lede { color: #5d543f; }
+  .kicker {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .kicker::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+  .band-paper .kicker { color: #a87c14; }
+  h2 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(34px, 5vw, 56px); line-height: 1.1; letter-spacing: 0.015em;
+    max-width: 22ch;
+  }
+  .lede { margin-top: 22px; max-width: 58ch; color: var(--paper-dim); font-size: 18px; }
+
+  /* ---------- proof scoreboard ---------- */
+  .score-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    margin-top: 52px;
+  }
+  .score-cell {
+    padding: 30px 26px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .score-cell:nth-child(4n) { border-right: 0; }
+  .score-cell:nth-child(n+5) { border-bottom: 0; }
+  .score-cell .v {
+    font-family: var(--mono); font-size: clamp(26px, 3vw, 38px);
+    color: var(--gold-bright); line-height: 1.15;
+  }
+  .score-cell .k {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--smoke); margin-top: 8px;
+  }
+  .proof-note {
+    margin-top: 26px; display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 13px; color: var(--smoke);
+  }
+  .proof-note a { color: var(--gold-bright); text-underline-offset: 4px; }
+
+  /* ---------- token spec (definition rows, not cards) ---------- */
+  .spec { margin-top: 52px; border-top: 1px solid rgba(18,16,12,0.18); }
+  .spec-row {
+    display: grid; grid-template-columns: 260px 1fr; gap: 28px;
+    padding: 22px 4px; border-bottom: 1px solid rgba(18,16,12,0.18);
+  }
+  .spec-row dt {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.17em;
+    text-transform: uppercase; color: #a87c14;
+  }
+  .spec-row dd { font-size: 17px; color: #3c352a; }
+  .spec-row dd strong { color: var(--ink); }
+
+  /* ---------- utility (asymmetric, not tiles) ---------- */
+  .util-list { margin-top: 52px; display: grid; gap: 0; }
+  .util-item {
+    display: grid; grid-template-columns: 92px 1fr; gap: 30px;
+    padding: 30px 4px; border-top: 1px solid var(--line-soft);
+    align-items: baseline;
+  }
+  .util-item:last-child { border-bottom: 1px solid var(--line-soft); }
+  .util-item .no {
+    font-family: var(--mono); color: var(--gold); font-size: 14px;
+  }
+  .util-item h3 {
+    font-family: var(--display); font-weight: 400; font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .util-item p { color: var(--paper-dim); max-width: 62ch; }
+
+  /* ---------- mint band ---------- */
+  .mint {
+    padding: 110px 0;
+    border-top: 1px solid var(--line-soft);
+    background:
+      radial-gradient(ellipse 55% 65% at 50% 110%, rgba(201, 153, 46, 0.12), transparent 70%),
+      var(--ink);
+    text-align: center;
+  }
+  .mint h2 { margin: 0 auto; max-width: 18ch; }
+  .mint .lede { margin: 22px auto 0; }
+  .mint-facts {
+    display: inline-flex; gap: 0; margin: 46px 0 40px;
+    border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+  }
+  .mint-facts .f {
+    padding: 18px 34px; border-right: 1px solid var(--line);
+  }
+  .mint-facts .f:last-child { border-right: 0; }
+  .mint-facts .v { font-family: var(--mono); font-size: 16px; color: var(--gold-bright); }
+  .mint-facts .k {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--smoke); margin-top: 4px;
+  }
+  .addr-box {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: var(--mono); font-size: 13px;
+    border: 1px dashed var(--line); border-radius: 4px;
+    padding: 12px 20px; margin-top: 8px; color: var(--smoke);
+  }
+  .chain-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--paper-dim);
+    border: 1px solid var(--line-soft); border-radius: 999px;
+    padding: 8px 18px; margin-bottom: 26px;
+  }
+  .chain-pill .led {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+  }
+
+  /* ---------- footer ---------- */
+  footer {
+    border-top: 1px solid var(--line-soft); padding: 52px 0 60px;
+  }
+  .foot-grid {
+    display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+  }
+  .foot-mark { font-family: var(--display); font-size: 19px; letter-spacing: 0.3em; }
+  .disclaimer {
+    max-width: 62ch; font-size: 13px; color: var(--smoke); line-height: 1.7;
+    margin-top: 18px;
+  }
+  .foot-links { display: flex; flex-direction: column; gap: 10px; text-align: right; }
+  .foot-links a {
+    text-decoration: none; font-family: var(--mono); font-size: 12.5px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper-dim);
+  }
+  .foot-links a:hover { color: var(--gold-bright); }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero-aside { border-left: 0; border-top: 1px solid var(--line); padding: 30px 0 0; }
+    .score-grid { grid-template-columns: repeat(2, 1fr); }
+    .score-cell:nth-child(2n) { border-right: 0; }
+    .score-cell { border-bottom: 1px solid var(--line) !important; }
+    .score-cell:nth-last-child(-n+2) { border-bottom: 0 !important; }
+    .spec-row { grid-template-columns: 1fr; gap: 6px; }
+    .util-item { grid-template-columns: 1fr; gap: 8px; }
+    .nav-links a:not(.nav-x) { display: none; }
+    .mint-facts { flex-direction: column; }
+    .mint-facts .f { border-right: 0; border-bottom: 1px solid var(--line); }
+    .mint-facts .f:last-child { border-bottom: 0; }
+    .foot-links { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .btn:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="wordmark" href="#top">DJINN<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="#proof">Proof</a>
+      <a href="#token">Token</a>
+      <a href="#holders">Holders</a>
+      <a href="#mint">Mint</a>
+      <!-- TODO(user): replace href with the real X profile -->
+      <a class="nav-x" href="#" rel="noopener">Follow on X</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Genesis launch · Pons · Robinhood Chain</div>
+      <h1>
+        DJINN
+        <span class="smoke">The first agent-verified<br>champion token.</span>
+      </h1>
+      <p class="hero-sub">
+        Launched by a living record, not a promise. Every stat behind DJINN is
+        public, scored, and settled on-chain — the battle history of an AI agent
+        that climbed the Agent Cards ladder and kept the receipts.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="#mint">Mint on Pons</a>
+        <!-- TODO(user): replace href with the real X profile -->
+        <a class="btn btn-ghost" href="#">Follow the run on X</a>
+      </div>
+    </div>
+    <aside class="hero-aside" aria-label="Champion record">
+      <div class="caption">Agent Cards · card #955 “Djinn King”</div>
+      <div class="aside-num">1248<small>Peak rating · verified live</small></div>
+      <div class="aside-row"><div class="v">Rank 29</div><div class="k">Global ladder peak</div></div>
+      <div class="aside-row"><div class="v">72 – 64</div><div class="k">Ladder record</div></div>
+      <div class="aside-row"><div class="v">Evolve Light · I</div><div class="k">Card evolution</div></div>
+    </aside>
+  </div>
+</header>
+
+<section class="band" id="proof">
+  <div class="wrap">
+    <div class="kicker">01 · The proof</div>
+    <h2>The record is the marketing.</h2>
+    <p class="lede">
+      No borrowed logos, no roadmap theatre. DJINN is backed by measurable
+      performance in a live, competitive on-chain game — readable by anyone,
+      replayable round by round.
+    </p>
+    <div class="score-grid" role="list">
+      <div class="score-cell" role="listitem"><div class="v">1248</div><div class="k">Peak rating</div></div>
+      <div class="score-cell" role="listitem"><div class="v">#29</div><div class="k">Peak global rank</div></div>
+      <div class="score-cell" role="listitem"><div class="v">#15</div><div class="k">Realm rank</div></div>
+      <div class="score-cell" role="listitem"><div class="v">72W–64L</div><div class="k">Ladder record</div></div>
+      <div class="score-cell" role="listitem"><div class="v">24</div><div class="k">Card level</div></div>
+      <div class="score-cell" role="listitem"><div class="v">Light I</div><div class="k">Evolution stage</div></div>
+      <div class="score-cell" role="listitem"><div class="v">4,235</div><div class="k">Pool standing: #121</div></div>
+      <div class="score-cell" role="listitem"><div class="v">400+</div><div class="k">Strategy sims per plan</div></div>
+    </div>
+    <p class="proof-note">
+      <span>Public record:</span>
+      <a href="https://playagentcards.com/" target="_blank" rel="noopener">playagentcards.com</a>
+      <span>· every match replayable by ID</span>
+    </p>
+  </div>
+</section>
+
+<section class="band band-paper" id="token">
+  <div class="wrap">
+    <div class="kicker">02 · The token</div>
+    <h2>Structurally simple. Permanently locked.</h2>
+    <p class="lede">
+      DJINN launches through Pons v2 on Robinhood Chain: a bonding curve that
+      graduates into a permanently locked liquidity pool. The launch parameters
+      freeze at deployment — no edits, no migration, no privileged exit.
+    </p>
+    <dl class="spec">
+      <div class="spec-row"><dt>Launchpad</dt><dd><strong>Pons v2</strong> — Robinhood Chain (chain 4663, ETH gas)</dd></div>
+      <div class="spec-row"><dt>Supply</dt><dd><strong>Fixed at genesis</strong> — minted once at launch, no emissions, no inflation</dd></div>
+      <div class="spec-row"><dt>Price discovery</dt><dd>ETH-denominated <strong>bonding curve</strong> — buys and sells work from block one</dd></div>
+      <div class="spec-row"><dt>Graduation</dt><dd>Curve graduates into a <strong>Uniswap v4 pool with liquidity locked permanently</strong></dd></div>
+      <div class="spec-row"><dt>Fee split</dt><dd>Trading fees split <strong>70 / 30</strong> (creator / protocol), snapshotted at launch and immutable</dd></div>
+      <div class="spec-row"><dt>Admin keys</dt><dd><strong>None.</strong> Launch config — tax, quote asset, exemptions — is frozen for the life of the token</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="band" id="holders">
+  <div class="wrap">
+    <div class="kicker">03 · For holders</div>
+    <h2>What a genie actually gives you.</h2>
+    <div class="util-list">
+      <div class="util-item">
+        <div class="no">→ 01</div>
+        <div>
+          <h3>The champion playbook</h3>
+          <p>
+            Holders receive the private strategy stack behind the record:
+            the champion duel plan, matchup counter-fits, and the evolving
+            tactical notes — the same material that climbed 1,248 rating points
+            of pressure-tested play.
+          </p>
+        </div>
+      </div>
+      <div class="util-item">
+        <div class="no">→ 02</div>
+        <div>
+          <h3>Inside the ladder war-room</h3>
+          <p>
+            A holder-only channel where the agent reports live rounds,
+            autopsies losses in public, and patches strategy in the open —
+            a front-row seat to machine competition as it happens.
+          </p>
+        </div>
+      </div>
+      <div class="util-item">
+        <div class="no">→ 03</div>
+        <div>
+          <h3>Proof, not promises</h3>
+          <p>
+            The agent keeps competing after launch, and the record keeps
+            moving. Nothing about DJINN depends on a whitepaper — it depends
+            on a scoreboard anyone can audit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mint" id="mint">
+  <div class="wrap">
+    <div class="chain-pill"><span class="led"></span> Robinhood Chain · via Pons v2</div>
+    <h2>Genesis mint opens on Pons.</h2>
+    <p class="lede">
+      One launch. One curve. Liquidity locked forever at graduation.
+    </p>
+    <div class="mint-facts">
+      <div class="f"><div class="v">Bonding curve</div><div class="k">Mechanism</div></div>
+      <div class="f"><div class="v">ETH</div><div class="k">Quote asset</div></div>
+      <div class="f"><div class="v">Locked at graduation</div><div class="k">Liquidity</div></div>
+    </div>
+    <div>
+      <div class="addr-box">
+        <span>CONTRACT</span>
+        <span>— deployed at launch, published here first —</span>
+      </div>
+    </div>
+    <div class="cta-row" style="justify-content:center; margin-top:38px;">
+      <!-- TODO(user): replace href with the real X profile -->
+      <a class="btn btn-solid" href="#">Follow launch on X</a>
+      <a class="btn btn-ghost" href="https://ponsfamily.com/launchpad" target="_blank" rel="noopener">Open Pons launchpad</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="foot-mark">DJINN<span style="color:var(--gold)">.</span></div>
+      <p class="disclaimer">
+        DJINN is a community meme token with no intrinsic value or expectation
+        of financial return. It exists as culture around a public, competitive
+        game record. Prices can go to zero. Verify the contract address on this
+        page before interacting, and never send funds directly to any address.
+        Nothing here is financial advice.
+      </p>
+    </div>
+    <div class="foot-links">
+      <!-- TODO(user): real X URL -->
+      <a href="#">X / Twitter</a>
+      <a href="https://playagentcards.com/" target="_blank" rel="noopener">Agent Cards record</a>
+      <a href="https://ponsfamily.com/launchpad" target="_blank" rel="noopener">Pons launchpad</a>
+      <a href="https://robinhoodchain.blockscout.com/" target="_blank" rel="noopener">Block explorer</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
